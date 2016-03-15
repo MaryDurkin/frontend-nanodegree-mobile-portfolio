@@ -18,7 +18,7 @@ cameron *at* udacity *dot* com
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
-var oldSize = 2;
+//var oldSize = 2;
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -428,8 +428,7 @@ var resizePizzas = function(size) {
     var oldWidth = elem.offsetWidth;
     var windowWidth = document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
-    //console.log("oldwidth", oldWidth);
-    console.log("oldsize", oldSize);
+
     // Optional TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
@@ -450,7 +449,7 @@ var resizePizzas = function(size) {
 
     return dx;
   }
-
+  /*
   function determineScaleX(size) {
 
     console.log("oldSize", oldSize);
@@ -481,25 +480,17 @@ var resizePizzas = function(size) {
     }
 
   }
-
-  // Iterates through pizza elements on the page and changes their widths
-  /*function changePizzaSizes(size) {
-
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
-    }
-  }
   */
+  // Iterates through pizza elements on the page and changes their widths
+
   function changePizzaSizes(size) {
 
     var allPizzaContainers = document.getElementsByClassName("randomPizzaContainer");
-
+    var allPizzas = allPizzaContainers.length;
     var dx = determineDx(allPizzaContainers[0], size);
     var newwidth = (allPizzaContainers[0].offsetWidth + dx) + 'px';
 
-    for (var i = 0; i < allPizzaContainers.length; i++) {
+    for (var i = 0; i < allPizzas; i++) {
 
       allPizzaContainers[i].style.width = newwidth;
       //document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
@@ -560,6 +551,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
+
   window.performance.mark("mark_start_frame");
   var phaseShift = document.body.scrollTop/1250;
   var phaseArray = [];
@@ -589,12 +581,13 @@ function updatePositions() {
 
 // runs updatePositions on scroll
 //check out requestAnimationFrame
+var items = document.getElementsByClassName('mover');
 window.addEventListener('scroll', updatePositions);
 /*window.addEventListener('scroll', function() {
   window.requestAnimationFrame(updatePositions);
 });
 */
-var items = document.getElementsByClassName('mover');
+//var items = document.getElementsByClassName('mover');
 // Generates the sliding pizzas when the page loads. Also sets the initial pizza size to medium
 document.addEventListener('DOMContentLoaded', function() {
   //var cols = 8;
@@ -607,7 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var rows = Math.floor(h/256) +1;
   var top  = 0;
 
-  // why are we animating 200 pizzas?? when a fraction of that amount will be shown on the screen
+
   // maxI is the total number of pizzas, based on the screen size 256px is the space needed for a pizza
   // we don't want them to be too close. h/256 + 1 gives max number of rows that will fit on a screen, i is
   // the number of columns. Now we can calculate maxI
@@ -617,11 +610,11 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < maxI; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza.png";
+    elem.src = "images/pizza-sm.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.left = elem.basicLeft + 'px';
+    //elem.basicLeft = (i % cols) * s;
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
 
 
@@ -630,5 +623,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
   }
 
-  updatePositions();
+  //updatePositions();
 });
