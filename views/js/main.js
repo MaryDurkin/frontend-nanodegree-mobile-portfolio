@@ -292,8 +292,8 @@ function generator(adj, noun) {
   var nouns = getNoun(noun);
   var randomAdjective = parseInt(Math.random() * adjectives.length);
   var randomNoun = parseInt(Math.random() * nouns.length);
-  //var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
-  var name = "The " + adjectives[randomAdjective] + " " + nouns[randomNoun];
+  var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
+  //var name = "The " + adjectives[randomAdjective] + " " + nouns[randomNoun];
   return name;
 }
 
@@ -382,6 +382,7 @@ var pizzaElementGenerator = function(i) {
 
   pizzaImage.src = "images/pizza.png";
   pizzaImage.classList.add("img-responsive");
+  pizzaImage.style.tansform = "translateZ(0)";
   pizzaImageContainer.appendChild(pizzaImage);
   pizzaContainer.appendChild(pizzaImageContainer);
 
@@ -616,7 +617,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //elem.basicLeft = (i % cols) * s;
     elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-
+    elem.style.tansform = "translateZ(0)";
+    //elem.style.willChange = "transform";
 
     document.getElementById("movingPizzas1").appendChild(elem);
     //document.querySelector("#movingPizzas1").appendChild(elem);
