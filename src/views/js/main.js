@@ -430,7 +430,7 @@ var resizePizzas = function(size) {
     var windowWidth = document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
-    // Optional TODO: change to 3 sizes? no more xl?
+
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
       switch(size) {
@@ -450,39 +450,7 @@ var resizePizzas = function(size) {
 
     return dx;
   }
-  /*
-  function determineScaleX(size) {
 
-    console.log("oldSize", oldSize);
-    console.log("Size", size);
-    if (oldSize == size ) {
-      return 1; //no change
-    }
-    else if (oldSize == 1 && size == 2) {
-      return 1.333;
-    }
-    else if (oldSize == 1 && size == 3) {
-      return 2;
-    }
-    else if (oldSize == 2 && size == 3) {
-      return 1.5;
-    }
-    else if (oldSize == 2 && size == 1) {
-      return 0.75;
-    }
-    else if (oldSize == 3 && size == 2) {
-      return 0.666;
-    }
-    else if (oldSize == 3 && size == 1) {
-      return 0.5;
-    }
-    else {
-      return "Yikes, an error!";
-    }
-
-  }
-  */
-  // Iterates through pizza elements on the page and changes their widths
 
   function changePizzaSizes(size) {
 
@@ -494,18 +462,9 @@ var resizePizzas = function(size) {
     for (var i = 0; i < allPizzas; i++) {
 
       allPizzaContainers[i].style.width = newwidth;
-      //document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
+
     }
 
-    /*
-    var scaleX = determineScaleX(size);
-    console.log("scale", scaleX);
-    oldSize = size;
-
-    for (var i = 0; i < allPizzaContainers.length; i++) {
-      document.getElementsByClassName("randomPizzaContainer")[i].style.transform = "scaleX(" + scaleX + ")";
-    }
-    */
   }
 
   changePizzaSizes(size);
@@ -581,49 +540,43 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-//check out requestAnimationFrame
+
 var items = document.getElementsByClassName('mover');
 window.addEventListener('scroll', updatePositions);
-/*window.addEventListener('scroll', function() {
-  window.requestAnimationFrame(updatePositions);
-});
-*/
-//var items = document.getElementsByClassName('mover');
+
+
 // Generates the sliding pizzas when the page loads. Also sets the initial pizza size to medium
 document.addEventListener('DOMContentLoaded', function() {
-  //var cols = 8;
-  //var oldSize = 2;
+
   var s = 256;
-  var w = window.innerWidth;
+  //var w = window.innerWidth;
   var h = window.innerHeight;
-  //var cols = 8;
-  var cols = 8; //Math.floor(w/256);
+  var cols = 8;
+  // rows is max # of rows that will fit on a screen
   var rows = Math.floor(h/256) +1;
-  var top  = 0;
+  //var top  = 0;
 
-
-  // maxI is the total number of pizzas, based on the screen size 256px is the space needed for a pizza
-  // we don't want them to be too close. h/256 + 1 gives max number of rows that will fit on a screen, i is
-  // the number of columns. Now we can calculate maxI
-
+  /*
+  maxI is the total number of pizzas, based on the screen size.
+  256px is the space needed for a pizza - we don't want them to be too close.
+  h/256 + 1 gives max number of rows that will fit on a screen
+  Now we can calculate maxI
+  */
   var maxI = Math.floor(cols*rows);
 
   for (var i = 0; i < maxI; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza-sm.png";
+    elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    //elem.basicLeft = (i % cols) * s;
     elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    // use the translateZ hack to push the pizzas onto their own layer
     elem.style.tansform = "translateZ(0)";
-    //elem.style.willChange = "transform";
 
     document.getElementById("movingPizzas1").appendChild(elem);
-    //document.querySelector("#movingPizzas1").appendChild(elem);
 
   }
 
-  //updatePositions();
 });

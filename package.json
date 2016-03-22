@@ -1,0 +1,30 @@
+{
+  "name": "frontend-nanodegree-mobile-portfolio",
+  "version": "1.0.0",
+  "description": "MaryWalsh-FEND-P4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaryDurkin/frontend-nanodegree-mobile-portfolio.git"
+  },
+  "keywords": [
+    "grunt",
+    "firstshot"
+  ],
+  "author": "MaryDurkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaryDurkin/frontend-nanodegree-mobile-portfolio/issues"
+  },
+  "homepage": "https://github.com/MaryDurkin/frontend-nanodegree-mobile-portfolio#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^1.1.0",
+    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1"
+  }
+}
