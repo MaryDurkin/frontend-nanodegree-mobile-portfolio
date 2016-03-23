@@ -2,7 +2,7 @@
 
 ### Website Performance Optimization Portfolio
 
-There are src and dist folders containing source and production code. The dist folder can be found at the gh-pages version of the repository, [here](http://marydurkin.github.io/frontend-nanodegree-mobile-portfolio/) ---- actually this bit isn't working - Yikes!
+There are src and dist folders containing source and production code. The dist folder can be found at the gh-pages version of the repository, [here](http://marydurkin.github.io/frontend-nanodegree-mobile-portfolio/)
 
 (If you would like to rebuild the dist files, download the repository and run the grunt command in the terminal).
 
