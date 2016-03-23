@@ -451,7 +451,10 @@ var resizePizzas = function(size) {
     return dx;
   }
 
-
+/* I made the following changes to improve performance:
+ optimized the loop by removing all code not dependent on i out of the loop
+ replaced .querySelectorAll with .getElementById and assigned the results to allPizzaContainers
+*/
   function changePizzaSizes(size) {
 
     var allPizzaContainers = document.getElementsByClassName("randomPizzaContainer");
@@ -479,9 +482,9 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-
+// I moved the variable assignment/lookup outside the loop as itnot dependent on i
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -572,8 +575,10 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    // use the translateZ hack to push the pizzas onto their own layer
-    elem.style.tansform = "translateZ(0)";
+    // I initially use the translateZ hack to push the pizzas onto their own layer,
+    // for some reason this didn't work so I used backface-visibility in css instead
+    // I would love to know why it didn't work!
+    //elem.style.tansform = "translateZ(0)";
 
     document.getElementById("movingPizzas1").appendChild(elem);
 

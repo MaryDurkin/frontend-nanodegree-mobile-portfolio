@@ -28,11 +28,17 @@ form {
 #pizzaSize {
   font-weight: 800;
 }
-
+/*
+added the backface-visibility to force the scrolling pizzas onto separate layers
+credit to Udacity reviewer Mario for teaching me this.
+*/
 .mover {
   position: fixed;
   width: 256px;
   z-index: -1;
+  -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+  backface-visibility: hidden;
+
 }
 
 .randomPizzaContainer {
